@@ -4,6 +4,7 @@ class TodosController < ApplicationController
   # GET /todos or /todos.json
   def index
     @todos = Todo.all
+    render :json => @todos
   end
 
   # GET /todos/1 or /todos/1.json
@@ -14,24 +15,22 @@ class TodosController < ApplicationController
   def new
     @todo = Todo.new
   end
-
+#Quang - handle params
+#getAll, getById
   # GET /todos/1/edit
   def edit
+    name = params[:name]
+    render json: name
   end
 
   # POST /todos or /todos.json
   def create
-    @todo = Todo.new(todo_params)
-
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo, notice: "Todo was successfully created." }
-        format.json { render :show, status: :created, location: @todo }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
+    # @todo = Todo.new(todo_params)
+    # print @todo
+    # Todo.new(description: 'Max', status: 1)
+    render json: {
+      status:"OK"
+    }
   end
 
   # PATCH/PUT /todos/1 or /todos/1.json
